@@ -16,6 +16,7 @@ const words = [
   "vercel",
   "shadcn",
   "framer",
+  "motion",
 ];
 
 export default function AdvancedTypingGame() {
@@ -42,7 +43,8 @@ export default function AdvancedTypingGame() {
     setCorrectChars(0);
     setMistypedChars(0);
     audioContextRef.current = new (window.AudioContext ||
-      (window as any).webkitAudioContext)();
+      (window as unknown as { webkitAudioContext: typeof AudioContext })
+        .webkitAudioContext)();
   }, []);
 
   const endGame = useCallback(() => {
